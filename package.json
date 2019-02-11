@@ -1,0 +1,23 @@
+{
+  "name": "udp_tunnel",
+  "version": "1.0.0",
+  "description": "udp tunnel ",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamilrr/udpTunnel.git"
+  },
+  "keywords": [
+    "udp",
+    "tunnel"
+  ],
+  "author": "Gamil Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gamilrr/udpTunnel/issues"
+  },
+  "homepage": "https://github.com/gamilrr/udpTunnel#readme"
+}

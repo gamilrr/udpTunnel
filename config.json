@@ -1,0 +1,26 @@
+{
+    "production": false,
+    "prod":{
+
+        "streamer":{
+            "port": 4000,
+            "address": "0.0.0.0"
+        },
+
+        "client":{
+            "port": 5000,
+            "address": "0.0.0.0"
+        }
+    },
+    "dev":{
+        "streamer":{
+            "port": 4000,
+            "address": "0.0.0.0"
+        },
+
+        "client":{
+            "port": 5000,
+            "address": "0.0.0.0"
+        }
+    }
+}
