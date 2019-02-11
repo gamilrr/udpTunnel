@@ -21,19 +21,19 @@ class UDPSocket{
         this.server.bind(this.port, this.address);
     }
 
-    async stop(){
+    stop(){
         this.server.close();
     }
 
-    async onListen(){
+    onListen(){
         throw new Error(`'listening' UDP server's event without handler.`);
     }
 
-    async onData(data, client){
+    onData(data, client){
         throw new Error(`'message' UDP server's event without handler.`);
     }
 
-    async onError(err){
+    onError(err){
         throw new Error(`'error' UDP server's event without handler.`);
     }
 

@@ -10,7 +10,9 @@
         "client":{
             "port": 5000,
             "address": "0.0.0.0"
-        }
+        },
+
+        "cacheTime": 500
     },
     "dev":{
         "streamer":{
@@ -21,6 +23,8 @@
         "client":{
             "port": 5000,
             "address": "0.0.0.0"
-        }
+        },
+
+        "cacheTime": 500
     }
 }

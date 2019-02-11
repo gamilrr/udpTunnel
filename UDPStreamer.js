@@ -1,5 +1,5 @@
 const UDPSocket = require('./UDPSocket');
-
+const SelfQueue = require('./SelfQueue');
 
 class UDPStreamer extends UDPSocket{
 
@@ -7,15 +7,16 @@ class UDPStreamer extends UDPSocket{
         super(port, address);
     }
 
-    async onListen(){
+    onListen(){
         console.log(`UDPStreamer server listening by ${this.address}:${this.port}`);
     }
 
-    async onData(data, client){
+    onData(data, client){
+        SelfQueue.push(data);
         console.log(`this client: ${client.address}:${client.port} sent this data:\n ${data}\n`);
     }
 
-    async onError(err){
+    onError(err){
 
     }
 }

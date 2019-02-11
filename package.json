@@ -4,7 +4,8 @@
   "description": "udp tunnel ",
   "main": "app.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node ./app.js -s 0.0.0.0:4001 -c 0.0.0.0:5001 -t 500"
   },
   "repository": {
     "type": "git",
