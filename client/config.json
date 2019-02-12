@@ -1,10 +1,11 @@
 {
     "production": false,
+    "id": "11111",
     "prod":{
 
         "server":{
             "port": 5000,
-            "address": "0.0.0.0"
+            "address": "127.0.0.1"
         },
 
         "keepAliveTime": 1

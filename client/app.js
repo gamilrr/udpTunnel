@@ -1,7 +1,7 @@
 #!/bin/env/node
 const UDPClient = require('./UDPClient');
-const config = require('./config.json');
-const env = config[config.production ? "prod" : "dev"];
+global.config = require('./config.json');
+global.env = config[config.production ? "prod" : "dev"];
 
 //get parameters 
 //param examples: -s 0.0.0.0:4000 -k 10 //-k keep alive in s
@@ -10,9 +10,7 @@ let serverIp = null;
 
 let keepAliveTime = null; 
 
-let argSections = process.argv.slice(2, 6).join(' ').split('-');
-
-argSections.splice(2);
+let argSections = process.argv.slice(2, 6).join(' ').split('-').splice(1,3);
 
 argSections.forEach((item)=>{
 

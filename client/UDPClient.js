@@ -20,8 +20,13 @@ class UDPClient{
         this.client.on('error', (err) => {this.onError(err)});
 
         this.intv = setInterval(()=>{
+            //DEBUG
             console.log(`sent ka to ${this.serverAddress}:${this.serverPort}`);
-            this.client.send("k", this.serverPort, this.serverAddress);
+
+            let kpalive = JSON.stringify({id: global.config.id, data: "k"});
+
+            this.client.send(kpalive, this.serverPort, this.serverAddress);
+            
         }, this.keepAlive*1000);
     }
 
@@ -35,7 +40,8 @@ class UDPClient{
     }
 
     onData(data, server){
-        console.log(`this client: ${server.address}:${server.port} sent this data: ${data}`);
+        //DEBUG
+        console.log(`this server: ${server.address}:${server.port} sent this data: ${data}`);
     }
 
     onError(err){

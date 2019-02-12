@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "node ./tunnel/app.js -s 0.0.0.0:4001 -c 0.0.0.0:5001 -t 500"
+    "startServer": "node ./tunnel/app.js -s 0.0.0.0:4001 -c 0.0.0.0:5001 -t 500",
+    "startClient": "node ./client/app.js -s 0.0.0.0:4001 -k 1"
   },
   "repository": {
     "type": "git",

@@ -14,9 +14,7 @@ let clientPort = null;
 let clientIp = null;
 let cacheTime = null; 
 
-let argSections = process.argv.slice(2, 7).join(' ').split('-');
-
-argSections.splice(3);
+let argSections = process.argv.slice(2, 8).join(' ').split('-').splice(1,4);
 
 argSections.forEach((item)=>{
 
@@ -37,7 +35,7 @@ argSections.forEach((item)=>{
 
         case 't':{
             let time = item.split('t')[1];
-            cacheTime = time;
+            cacheTime = parseInt(time);
             }
             break;
 

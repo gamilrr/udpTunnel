@@ -8,12 +8,14 @@ class UDPStreamer extends UDPSocket{
     }
 
     onListen(){
+        //DEBUG
         console.log(`UDPStreamer server listening by ${this.address}:${this.port}`);
     }
 
     onData(data, client){
         SelfQueue.push(data);
-        console.log(`this client: ${client.address}:${client.port} sent this data:\n ${data}\n`);
+        //DEBUG
+        console.log(`this streamer: ${client.address}:${client.port} sent this data:\n ${data}\n`);
     }
 
     onError(err){

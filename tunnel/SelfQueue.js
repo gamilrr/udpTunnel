@@ -10,10 +10,10 @@ class SelfQueue{
         this.wtime = time;
     }
 
-    push(data){
+    push(pack){
 
         //TODO: implement a more efficient managment
-        for(let i = this.queue.length - 1; i >= 0; i++){
+        for(let i = this.queue.length - 1; i >= 0; i--){
             if(this.queue[i].timeSt < Date.now()){
                this.queue = this.queue.splice(i + 1);
                break;
@@ -21,10 +21,15 @@ class SelfQueue{
         }
 
         
-        return  this.queue.push({
-            item:data,
+
+        this.queue.push({
+            data:pack,
             timeSt: Date.now() + this.wtime,
         });
+
+        //DEBUG
+        console.log(this.queue);
+        
     }
 
     dequeue(){
@@ -36,7 +41,7 @@ class SelfQueue{
 
     dequeueAll(){
         if(!this.queue.length) return null;
-        return this.queue;
+        return this.queue.splice(0);
     }
 
 }
