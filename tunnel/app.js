@@ -1,6 +1,7 @@
 #!/bin/env/node
 const UDPClient = require('./UDPClient');
 const UDPStreamer = require('./UDPStreamer');
+const SelfQueue = require('./SelfQueue');
 
 const config = require('./config.json');
 const env = config[config.production ? "prod" : "dev"];
@@ -46,14 +47,15 @@ argSections.forEach((item)=>{
     }
 });
 
-//check 
+// check
 streamPort = streamPort ? streamPort : env.streamer.port;
 streamIp = streamIp ? streamIp :  env.streamer.address;
 clientPort = clientPort ? clientPort : env.client.port;
 clientIp = clientIp ? clientIp : env.client.address;
 cacheTime = cacheTime ? cacheTime: env.cacheTime; 
 
-//init 
+// init
+SelfQueue.setWtime(cacheTime);
 new UDPClient(clientPort, clientIp).start();
 new UDPStreamer(streamPort, streamIp).start();
 

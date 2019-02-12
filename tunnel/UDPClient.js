@@ -20,13 +20,13 @@ class UDPClient extends UDPSocket{
 
         queue.forEach((item)=>{
             if(item.timeSt < Date.now()) return; //expired item
-            client.send(item.data);
+            this.server.send(item.data, client.port, client.address);
         });
 
         //TODO: implement a more efficient managment
-        for(let i = this.queue.length - 1; i >= 0; i++){
-            if(this.queue[i].timeSt > Date.now()){
-               this.queue = this.queue.splice(i + 1);
+        for(let i = queue.length - 1; i >= 0; i++){
+            if(queue[i].timeSt < Date.now()){
+               queue = queue.splice(i + 1);
                break;
             }
         }

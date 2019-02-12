@@ -2,11 +2,13 @@ var queue; //singleton
 
 class SelfQueue{
 
-    constructor(time){
+    constructor(){
         this.queue = [];
-        this.wtime = time; //ms
     }
 
+    setWtime(time){
+        this.wtime = time;
+    }
 
     push(data){
 
@@ -18,6 +20,7 @@ class SelfQueue{
             }
         }
 
+        
         return  this.queue.push({
             item:data,
             timeSt: Date.now() + this.wtime,

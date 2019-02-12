@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "node ./app.js -s 0.0.0.0:4001 -c 0.0.0.0:5001 -t 500"
+    "start": "node ./tunnel/app.js -s 0.0.0.0:4001 -c 0.0.0.0:5001 -t 500"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/gamilrr/udpTunnel/issues"
   },
-  "homepage": "https://github.com/gamilrr/udpTunnel#readme"
+  "homepage": "https://github.com/gamilrr/udpTunnel#readme",
+  "devDependencies": {
+  
+  }
 }

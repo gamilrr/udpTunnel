@@ -9,7 +9,7 @@ class UDPSocket{
         this.server = dgram.createSocket('udp4');
     }
 
-    async start(){
+    start(){
         this.server.on('message', (data, client)=>{
             this.onData(data, client);
         });
