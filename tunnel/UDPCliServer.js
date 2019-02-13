@@ -1,24 +1,34 @@
 const UDPSocket = require('./UDPSocket');
 const SelfQueue = require('./SelfQueue');
 
-class UDPClient extends UDPSocket{
+class UDPCliServer extends UDPSocket{
 
     constructor(port, address){
         super(port, address);
         this.intv = null;
-        this.clients = {}; //hash table with clients
+        this.clients = {empty: true}; //hash table with clients
     }
 
     start(){
 
         this.intv = setInterval(()=>{
+           
+           if(this.clients.empty) return;
+           
+           let queue = SelfQueue.dequeueAll();
+
+           try{ 
            for(let clientId in this.clients){
                if(this.clients.hasOwnProperty(clientId)){
-                    let client = this.clients[clientId];
-                    this._sendCache(client);
+                    let client = this.clients[clientId]; 
+                    if(client) this._sendCache(client, queue); 
+                  
                }
-           }
-        }, 1000);
+            }
+            } catch(e){
+            console.log("Error sending data")
+            }
+        }, 10000);
 
         super.start();
     }
@@ -41,16 +51,20 @@ class UDPClient extends UDPSocket{
         let datajs = JSON.parse(data);
 
         this.clients[datajs.id] = client;
+        this.clients.empty = false;
 
         //this._sendCache(client);
     }
 
 
-    _sendCache(client){
+    _sendCache(client,queue){
 
-        let queue = SelfQueue.dequeueAll();
-
-        if(!queue) return;
+        
+        if(!queue){
+            //DEBUG
+            console.log("Empty cache");
+            return;
+        } 
 
         queue.forEach((item)=>{
             if(item.timeSt < Date.now()) return; //expired item
@@ -58,14 +72,6 @@ class UDPClient extends UDPSocket{
             //DEBUG
             console.log(`sent client: ${client.address}:${client.port} this data: ${item.data}`);
         });
-
-        //TODO: implement a more efficient managment
-        for(let i = queue.length - 1; i >= 0; i--){
-            if(queue[i].timeSt < Date.now()){
-               queue = queue.splice(i + 1);
-               break;
-            }
-        }
 
     }
 
@@ -75,4 +81,4 @@ class UDPClient extends UDPSocket{
 }
 
 
-module.exports = UDPClient;
+module.exports = UDPCliServer;

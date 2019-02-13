@@ -1,22 +1,21 @@
 {
     "production": false,
-    "id": "11111",
-    "reconnect": 1,
+   
     "prod":{
 
         "server":{
-            "port": 4000,
+            "port": 5000,
             "address": "127.0.0.1"
         },
 
-        "keepAliveTime": 1
+        "keepAliveTime": 1000
     },
     "dev":{
         "server":{
-            "port": 4000,
+            "port": 5000,
             "address": "127.0.0.1"
         },
 
-        "keepAliveTime": 1
+        "keepAliveTime": 1000
     }
 }

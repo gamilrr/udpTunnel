@@ -3,13 +3,12 @@ const dgram = require('dgram');
 //abstract class
 class UDPClient{
 
-    constructor(port, address, kalive, id){
+    constructor(port, address = 'localhost', kalive){
         this.serverPort = port;
         this.serverAddress = address;
         this.client = dgram.createSocket('udp4');
-        this.keepAlive = kalive;
+        this.inter = kalive;
         this.intv = null;
-        this.id = id;
     }
 
     start(){
@@ -22,13 +21,11 @@ class UDPClient{
 
         this.intv = setInterval(()=>{
             //DEBUG
-            console.log(`sent ka to ${this.serverAddress}:${this.serverPort}`);
+            console.log(`sent data to ${this.serverAddress}:${this.serverPort}`);
 
-            let kpalive = JSON.stringify({id: this.id, data: "k"});
-
-            this.client.send(kpalive, this.serverPort, this.serverAddress);
+            this.client.send("Hello World", this.serverPort, this.serverAddress);
             
-        }, this.keepAlive*1000);
+        }, this.inter);
     }
 
     stop(){

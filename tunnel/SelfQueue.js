@@ -20,8 +20,6 @@ class SelfQueue{
             }
         }
 
-        
-
         this.queue.push({
             data:pack,
             timeSt: Date.now() + this.wtime,

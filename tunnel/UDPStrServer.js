@@ -1,7 +1,7 @@
 const UDPSocket = require('./UDPSocket');
 const SelfQueue = require('./SelfQueue');
 
-class UDPStreamer extends UDPSocket{
+class UDPStrServer extends UDPSocket{
 
     constructor(port, address){
         super(port, address);
@@ -13,7 +13,12 @@ class UDPStreamer extends UDPSocket{
     }
 
     onData(data, client){
-        SelfQueue.push(data);
+        try{
+            SelfQueue.push(data);
+        }catch(e){
+            //TODO do something with this error
+        }
+
         //DEBUG
         console.log(`this streamer: ${client.address}:${client.port} sent this data:\n ${data}\n`);
     }
@@ -24,4 +29,4 @@ class UDPStreamer extends UDPSocket{
 }
 
 
-module.exports = UDPStreamer;
+module.exports = UDPStrServer;

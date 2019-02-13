@@ -1,6 +1,6 @@
 #!/bin/env/node
-const UDPClient = require('./UDPClient');
-const UDPStreamer = require('./UDPStreamer');
+const UDPClient = require('./UDPCliServer');
+const UDPStreamer = require('./UDPStrServer');
 const SelfQueue = require('./SelfQueue');
 
 const config = require('./config.json');
