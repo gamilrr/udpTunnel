@@ -23,7 +23,7 @@ class UDPClient{
             //DEBUG
             console.log(`sent data to ${this.serverAddress}:${this.serverPort}`);
 
-            this.client.send("Hello World", this.serverPort, this.serverAddress);
+            this.client.send("Hello", this.serverPort, this.serverAddress);
             
         }, this.inter);
     }

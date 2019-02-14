@@ -4,7 +4,7 @@ global.config = require('./config.json');
 global.env = config[config.production ? "prod" : "dev"];
 
 //get parameters 
-//param examples: -s 0.0.0.0:4000 -k 10 //-k keep alive in s
+//param examples: -s 0.0.0.0:4000 -t 10
 let serverPort = null;
 let serverIp = null;
 

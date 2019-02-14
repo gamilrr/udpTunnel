@@ -22,13 +22,13 @@ class UDPClient{
 
         this.intv = setInterval(()=>{
             //DEBUG
-            console.log(`sent ka to ${this.serverAddress}:${this.serverPort}`);
+            console.log(`sent keepalive to ${this.serverAddress}:${this.serverPort}`);
 
             let kpalive = JSON.stringify({id: this.id, data: "k"});
 
             this.client.send(kpalive, this.serverPort, this.serverAddress);
             
-        }, this.keepAlive*1000);
+        }, this.keepAlive);
     }
 
     stop(){

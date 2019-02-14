@@ -3,9 +3,10 @@ const SelfQueue = require('./SelfQueue');
 
 class UDPCliServer extends UDPSocket{
 
-    constructor(port, address){
+    constructor(port, address, sendTime){
         super(port, address);
         this.intv = null;
+        this.sendTime = sendTime;
         this.clients = {empty: true}; //hash table with clients
     }
 
@@ -28,7 +29,7 @@ class UDPCliServer extends UDPSocket{
             } catch(e){
             console.log("Error sending data")
             }
-        }, 10000);
+        }, this.sendTime);
 
         super.start();
     }
@@ -45,7 +46,7 @@ class UDPCliServer extends UDPSocket{
 
     onData(data, client){
 
-        
+        //DEBUG
         console.log(`this client: ${client.address}:${client.port} sent this data: ${data}`);
         
         let datajs = JSON.parse(data);

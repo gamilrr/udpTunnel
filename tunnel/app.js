@@ -4,17 +4,18 @@ const UDPStreamer = require('./UDPStrServer');
 const SelfQueue = require('./SelfQueue');
 
 const config = require('./config.json');
-const env = config[config.production ? "prod" : "dev"];
+global.env = config[config.production ? "prod" : "dev"];
 
 //get parameters 
-//param examples: -s 0.0.0.0:4000 -c 0.0.0.0:5000 -t 500  
+//param examples: -s 0.0.0.0:4000 -c 0.0.0.0:5000 -t 500 -e 100
 let streamPort = null;
 let streamIp = null;
 let clientPort = null;
 let clientIp = null;
 let cacheTime = null; 
+let sendTime = null;
 
-let argSections = process.argv.slice(2, 8).join(' ').split('-').splice(1,4);
+let argSections = process.argv.slice(2, 10).join(' ').split('-').splice(1,5);
 
 argSections.forEach((item)=>{
 
@@ -39,6 +40,12 @@ argSections.forEach((item)=>{
             }
             break;
 
+        case 'e':{
+            let time = item.split('e')[1];
+            sendTime = parseInt(time);
+            }
+            break;
+
         default:
             break;
 
@@ -50,11 +57,11 @@ streamPort = streamPort ? streamPort : env.streamer.port;
 streamIp = streamIp ? streamIp :  env.streamer.address;
 clientPort = clientPort ? clientPort : env.client.port;
 clientIp = clientIp ? clientIp : env.client.address;
-cacheTime = cacheTime ? cacheTime: env.cacheTime; 
-
+cacheTime = cacheTime ? cacheTime : config.cacheTime; 
+sendTime = sendTime ? sendTime : env.client.sendTime
 // init
 SelfQueue.setWtime(cacheTime);
-new UDPClient(clientPort, clientIp).start();
+new UDPClient(clientPort, clientIp, sendTime).start();
 new UDPStreamer(streamPort, streamIp).start();
 
 console.log("INFO: Tunnel started");

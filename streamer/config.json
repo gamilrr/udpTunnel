@@ -8,7 +8,7 @@
             "address": "127.0.0.1"
         },
 
-        "keepAliveTime": 1000
+        "keepAliveTime": 100
     },
     "dev":{
         "server":{
@@ -16,6 +16,6 @@
             "address": "127.0.0.1"
         },
 
-        "keepAliveTime": 1000
+        "keepAliveTime": 100
     }
 }

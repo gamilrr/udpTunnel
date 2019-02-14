@@ -4,13 +4,13 @@ global.config = require('./config.json');
 global.env = config[config.production ? "prod" : "dev"];
 
 //get parameters 
-//param examples: -s 0.0.0.0:4000 -k 10 -i 1234//-k keep alive in s, -i id to identify client
+//param examples: -s 0.0.0.0:4000 -k 10 -i 1234//-k keep alive in s, -i id to identify the client
 let serverPort = null;
 let serverIp = null;
 let keepAliveTime = null; 
 let id = null;
 
-let argSections = process.argv.slice(2, 10).join(' ').split('-').splice(1,4);
+let argSections = process.argv.slice(2, 8).join(' ').split('-').splice(1,4);
 
 argSections.forEach((item)=>{
 

@@ -1,30 +1,32 @@
 {
     "production": false,
+    "cacheTime": 500,
     "prod":{
 
         "streamer":{
-            "port": 4000,
+            "port": 5000,
             "address": "0.0.0.0"
         },
 
         "client":{
-            "port": 5000,
-            "address": "0.0.0.0"
+            "port": 4000,
+            "address": "0.0.0.0",
+            "sendTime": 100
         },
 
         "cacheTime": 500
     },
     "dev":{
         "streamer":{
-            "port": 4000,
-            "address": "0.0.0.0"
-        },
-
-        "client":{
             "port": 5000,
             "address": "0.0.0.0"
         },
 
-        "cacheTime": 500
+        "client":{
+            "port": 4000,
+            "address": "0.0.0.0",
+            "sendTime": 100
+        }
+
     }
 }
